@@ -1,7 +1,7 @@
 {
   "name": "defold-multiplayer-backend",
   "version": "1.0.0",
-  "description": "Backend multijugador para juego de plataformas Defold",
+  "description": "Backend multijugador para Defold",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
