@@ -1,15 +1,14 @@
 {
-  "name": "defold-multiplayer-server",
+  "name": "defold-websocket-server",
   "version": "1.0.0",
-  "description": "Servidor multijugador para juego Defold",
+  "description": "Servidor WebSocket mínimo para Defold",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
+  "author": "Tu Nombre",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "socket.io": "^4.7.2",
-    "cors": "^2.8.5"
+    "ws": "^8.16.0"
   }
 }
-
