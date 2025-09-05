@@ -172,7 +172,7 @@ app.get('/health', (req, res) => {
     res.json({ status: 'ok', players: players.size });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 server.listen(PORT, () => {
     console.log(`Servidor multijugador ejecutándose en puerto ${PORT}`);
 });
