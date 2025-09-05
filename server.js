@@ -77,7 +77,7 @@ wss.on('connection', (ws) => {
     ws.on('close', () => {
         console.log(`Jugador desconectado: ${playerId}`);
         players.delete(playerId);
-        
+
         // Notificar a otros jugadores
         broadcast(JSON.stringify({
             type: MESSAGE_TYPES.PLAYER_LEFT,
@@ -94,7 +94,7 @@ function handleMessage(playerId, message, ws) {
         case MESSAGE_TYPES.INPUT:
             handleInput(playerId, message.data);
             break;
-            
+
         case MESSAGE_TYPES.PLAYER_UPDATE:
             player.position = message.position;
             player.direction = message.direction;
@@ -103,7 +103,7 @@ function handleMessage(playerId, message, ws) {
             player.onGround = message.onGround;
             player.hasKey = message.hasKey;
             player.lastUpdate = Date.now();
-            
+
             // Broadcast update to other players
             broadcast(JSON.stringify({
                 type: MESSAGE_TYPES.PLAYER_UPDATE,
@@ -116,23 +116,23 @@ function handleMessage(playerId, message, ws) {
                 }
             }), playerId);
             break;
-            
+
         case MESSAGE_TYPES.KEY_COLLECTED:
             player.hasKey = true;
             gameState.keys = gameState.keys.filter(key => key.id !== message.keyId);
-            
+
             broadcast(JSON.stringify({
                 type: MESSAGE_TYPES.KEY_COLLECTED,
                 playerId: playerId,
                 keyId: message.keyId
             }));
             break;
-            
+
         case MESSAGE_TYPES.LOCK_OPENED:
             if (player.hasKey) {
                 player.hasKey = false;
                 gameState.locks = gameState.locks.filter(lock => lock.id !== message.lockId);
-                
+
                 broadcast(JSON.stringify({
                     type: MESSAGE_TYPES.LOCK_OPENED,
                     playerId: playerId,
@@ -167,27 +167,6 @@ function broadcast(message, excludePlayerId = null) {
     });
 }
 
-// Inicializar elementos del juego
-function initializeGameState() {
-    // Agregar algunas llaves y candados (coordenadas de ejemplo)
-    gameState.keys = [
-        { id: 'key1', position: { x: 300, y: 100 } },
-        { id: 'key2', position: { x: 500, y: 200 } }
-    ];
-    
-    gameState.locks = [
-        { id: 'lock1', position: { x: 700, y: 100 } },
-        { id: 'lock2', position: { x: 900, y: 200 } }
-    ];
-    
-    // Plataformas (coordenadas de ejemplo)
-    gameState.platforms = [
-        { position: { x: 0, y: 50 }, size: { width: 1000, height: 20 } },
-        { position: { x: 200, y: 150 }, size: { width: 100, height: 20 } },
-        { position: { x: 400, y: 250 }, size: { width: 100, height: 20 } }
-    ];
-}
-
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.json({ status: 'ok', players: players.size });
@@ -195,6 +174,5 @@ app.get('/health', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-    initializeGameState();
     console.log(`Servidor multijugador ejecutándose en puerto ${PORT}`);
 });
