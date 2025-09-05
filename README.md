@@ -1,6 +1,6 @@
 # Defold Multiplayer Backend
 
-Backend multijugador para juego de plataformas Defold usando WebSockets.
+Backend multijugador Defold usando WebSockets.
 
 ## Deploy en Render.com
 
@@ -13,9 +13,9 @@ Backend multijugador para juego de plataformas Defold usando WebSockets.
 En tu juego Defold, necesitarás:
 
 1. Conectarte al WebSocket del servidor
-2. Enviar updates de posición periódicamente
-3. Sincronizar recolección de llaves y apertura de candados
+2. Enviar updates periódicamente
+3. Sincronizar los datos
 
 ### URL de conexión:
 - Desarrollo: `ws://localhost:3000`
-- Producción: `wss://tu-app.render.com`
+- Producción: `https://tuapp.onrender.com`
