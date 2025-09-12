@@ -1,13 +1,9 @@
 {
   "name": "defold-websocket-server",
-  "version": "1.0.0",
-  "description": "Servidor WebSocket mínimo para Defold",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Tu Nombre",
-  "license": "MIT",
   "dependencies": {
     "ws": "^8.16.0"
   }
