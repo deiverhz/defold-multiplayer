@@ -29,4 +29,4 @@ wss.on('connection', function connection(ws) {
   ws.send('Welcome to the WebSocket server!');
 });
 
-console.log('WebSocket server started on port 8080');
+console.log('WebSocket server started on port 3000');
